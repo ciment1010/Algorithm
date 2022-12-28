@@ -1,9 +1,3 @@
-/*
-연속적인 배열이나 값에서 최댓값/최솟값을 찾을 때는,
-'MAX = max(MAX, a)'
-이런 식으로 하기
-*/
-
 #include <bits/stdc++.h>
 #define fastio cin.tie(0) -> sync_with_stdio
 using namespace std;
