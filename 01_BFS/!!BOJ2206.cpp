@@ -1,3 +1,10 @@
+/*
+bfs의 3차원 배열에 대해 잘 생각해보자.
+보통 (최단길이 + 또 다른 조건)에서 사용된다.
+해당 조건이 만족되면, 바로 위쪽으로 뚫고 들어가서 그곳에서 bfs를 돌리게끔
+->3차원이 사용되면, tuple도 많이 쓰이므로 tie()도 잘 생각하자!
+*/
+
 #include <bits/stdc++.h>
 #define fastio cin.tie(0) -> sync_with_stdio(0)
 using namespace std;
