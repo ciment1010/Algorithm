@@ -1,4 +1,9 @@
-// 0-1 bfs
+/*
+0-1 BFS
+: BFS의 가중치가 0과 1인 경우에서, 최단 경로를 찾음
+: 가중치가 0인 경우가 front에 오도록!!
+-> 다익스트라보다 시간 복잡도가 훨씬 작음
+*/
 
 #include <bits/stdc++.h>
 #define fastio cin.tie(0)->sync_with_stdio(0)
