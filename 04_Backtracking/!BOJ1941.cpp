@@ -18,13 +18,16 @@ int ans;
 int main(){
     fastio;
 
+    // 7명의 가능한 조합을 1차원으로 생각
     fill(mask+7, mask+25, true);
     for(int i = 0; i < 5; i++) cin >> board[i];
     
     do{
         queue<pair<int,int>> Q;
+        // 가능한 조합을 표시, 방문한 칸 표시
         bool possible[5][5] = {}, vis[5][5] = {};
 
+        // 각각의 경우에서, 가능한 1차원 조합을, 2차원으로 표현하여 큐에 추가
         for(int i = 0; i < 25; i++){
             if(mask[i] == 0){
                 int x = i / 5;
@@ -38,7 +41,9 @@ int main(){
             }
         }
 
+        // 다솜파의 인원, 주위 사람의 수
         int dasom = 0, around = 0;
+        // 가능한 조합 중, 각각의 경우를 탐색함
         while(!Q.empty()){
             pair<int,int> cur = Q.front(); Q.pop();
             around++;
@@ -49,6 +54,7 @@ int main(){
                 int ny = cur.Y + dy[dir];
 
                 if(nx < 0 || nx >= 5 || ny < 0 || ny >= 5) continue;
+                // 이미 방문한 칸, 가능하지 않은 조합을 방문
                 if(vis[nx][ny] || !possible[nx][ny]) continue;
 
                 Q.push({nx,ny}); vis[nx][ny] = true;
