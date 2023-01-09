@@ -1,0 +1,72 @@
+/*
+진법을 활용한 경우의 수 탐색
+백 트래킹 : 현재 시점에서 가능한 다음 경우 체크
+진법 : 모든 경우를 진법으로 분리하여 체크
+*/
+
+#include <bits/stdc++.h>
+#define fastio cin.tie(0)->sync_with_stdio(0)
+using namespace std;
+
+int n;
+int board1[22][22];
+int board2[22][22];
+
+void Rotate(){
+    int temp[22][22];
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < n; j++)
+            temp[i][j] = board2[i][j];
+
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < n; j++)
+            board2[i][j] = temp[n - 1 - j][i];
+}
+
+void Push(){
+    for(int i = 0; i < n; i++){
+        int idx = 0;
+        int temp[22] = { };
+        for(int j = 0; j < n; j++){
+            if(board2[i][j] == 0) continue;
+            
+            if(temp[idx] == 0) temp[idx] = board2[i][j];
+            else if(temp[idx] == board2[i][j]) temp[idx++] *= 2;
+            else temp[++idx] = board2[i][j];
+        }
+        for(int j = 0; j < n; j++) board2[i][j] = temp[j];
+    }
+}
+
+void Move(int dir){
+    for(int i = 0; i < dir; i++) Rotate();
+    Push();
+    for(int i = 0; i < 4 - dir; i++) Rotate();
+}
+
+int main(){
+    fastio;
+
+    cin >> n;
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < n; j++)
+            cin >> board1[i][j];
+
+    int mx = 0;
+    for(int tmp = 0; tmp < 1024; tmp++){
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                board2[i][j] = board1[i][j];
+
+        int brute = tmp;
+        for(int i = 0; i < 5; i++){
+            int dir = brute % 4;
+            brute /= 4;
+            Move(dir);
+        }
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                mx = max(mx, board2[i][j]);
+    }
+    cout << mx;
+}
