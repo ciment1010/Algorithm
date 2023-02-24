@@ -1,5 +1,5 @@
 /*
-DP의 매 과정 출력
+DP의 과정 출력
 */
 #include <bits/stdc++.h>
 using namespace std;
